@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fadwa Hany — Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #080808; --bg2: #111111; --fg: #f0ede6; --fg2: #888880;
+    --accent: #e8d5b0; --accent2: #c4a87a; --border: rgba(240,237,230,0.08);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 3rem; backdrop-filter: blur(12px);
+    background: rgba(8,8,8,0.75); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg); text-decoration: none; }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg2); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--fg); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 3rem 5rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(196,168,122,0.05) 0%, transparent 70%); pointer-events: none; }
+  .status-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(240,237,230,0.06); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 0.78rem; letter-spacing: 0.05em; color: var(--fg2); margin-bottom: 2.5rem; width: fit-content; }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .hero-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 8vw, 7rem); line-height: 0.95; letter-spacing: -0.02em; max-width: 900px; margin-bottom: 2rem; }
+  .hero-title .line-accent { color: var(--accent2); }
+  .hero-sub { font-size: 1.05rem; line-height: 1.7; color: var(--fg2); max-width: 540px; margin-bottom: 3rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--fg); color: var(--bg); padding: 14px 32px; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.88rem; letter-spacing: 0.04em; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--fg); padding: 14px 32px; border-radius: 4px; border: 1px solid rgba(240,237,230,0.2); font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 0.88rem; letter-spacing: 0.04em; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+  .btn-secondary:hover { border-color: rgba(240,237,230,0.5); transform: translateY(-2px); }
+  .ticker { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; background: var(--bg2); }
+  .ticker-track { display: flex; animation: ticker 28s linear infinite; white-space: nowrap; }
+  .ticker-item { padding: 0 2rem; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg2); display: flex; align-items: center; gap: 1rem; }
+  .ticker-sep { color: var(--accent2); }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  section { padding: 7rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 1rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 3rem; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text { font-size: 1.05rem; line-height: 1.85; color: var(--fg2); }
+  .about-text p + p { margin-top: 1.2rem; }
+  .about-text strong { color: var(--fg); font-weight: 500; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .stat-card { background: var(--bg); padding: 2rem; }
+  .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg2); }
+  .honor-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(196,168,122,0.1); border: 1px solid rgba(196,168,122,0.2); border-radius: 2px; padding: 5px 12px; font-size: 0.75rem; color: var(--accent2); letter-spacing: 0.06em; margin-right: 8px; margin-top: 8px; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .project-card { background: var(--bg); padding: 2.5rem; transition: background 0.2s; text-decoration: none; color: inherit; display: block; }
+  .project-card:hover { background: var(--bg2); }
+  .project-tag { display: inline-block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent2); border: 1px solid rgba(196,168,122,0.25); padding: 3px 10px; border-radius: 2px; margin-bottom: 1.2rem; }
+  .project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.75rem; line-height: 1.2; }
+  .project-desc { font-size: 0.88rem; line-height: 1.7; color: var(--fg2); margin-bottom: 1.5rem; }
+  .project-metrics { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .metric { font-size: 0.78rem; color: var(--fg2); }
+  .metric strong { color: var(--fg); font-weight: 500; }
+  .project-date { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg2); opacity: 0.6; margin-top: 1.2rem; }
+  .project-arrow { display: inline-block; margin-top: 1rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg2); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .project-card:hover .project-arrow { color: var(--fg); border-color: var(--fg2); }
+  .stack-groups { display: flex; flex-direction: column; }
+  .stack-row { display: flex; align-items: baseline; gap: 2rem; padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
+  .stack-row-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg2); width: 160px; flex-shrink: 0; }
+  .stack-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .pill { font-size: 0.82rem; color: var(--fg); background: rgba(240,237,230,0.05); border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px; }
+  .exp-card { border: 1px solid var(--border); padding: 2.5rem; background: var(--bg2); margin-bottom: 1px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; gap: 2rem; }
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .exp-company { font-size: 0.88rem; color: var(--accent2); }
+  .exp-meta { text-align: right; }
+  .exp-date { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg2); display: block; margin-bottom: 3px; }
+  .exp-location { font-size: 0.72rem; color: var(--fg2); opacity: 0.6; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-points li { font-size: 0.88rem; line-height: 1.65; color: var(--fg2); padding-left: 1.2rem; position: relative; }
+  .exp-points li::before { content: '—'; position: absolute; left: 0; color: var(--accent2); }
+  .contact-inner { max-width: 600px; }
+  .contact-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; margin-bottom: 1.5rem; }
+  .contact-sub { font-size: 1rem; color: var(--fg2); line-height: 1.7; margin-bottom: 3rem; }
+  .contact-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg2); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 4px; transition: color 0.2s; }
+  .contact-link:hover { color: var(--fg); }
+  footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--fg2); }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 4rem; } section { padding: 5rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .stack-row { flex-direction: column; gap: 0.8rem; } .stack-row-label { width: auto; }
+    .exp-header { flex-direction: column; gap: 0.3rem; } .exp-meta { text-align: left; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Fadwa <span>Hany</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:none; padding-left:3rem; padding-right:3rem;">
+  <div class="status-badge">
+    <span class="status-dot"></span>
+    CS Student at Nile University · Cairo, Egypt
+  </div>
+  <h1 class="hero-title">
+    Building<br><span class="line-accent">Scalable</span><br>Data Systems.
+  </h1>
+  <p class="hero-sub">
+    Aspiring Data Engineer specializing in ETL pipelines, Big Data, and ML systems. Turning raw data into real-world impact with Python, Spark, and Airflow.
+  </p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="mailto:fadwahany2030@gmail.com" class="btn-secondary">Get in Touch</a>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Python <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Apache Spark <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Airflow <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Hadoop HDFS <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">FastAPI <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">PostgreSQL <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">ClickHouse <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Docker <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">PySpark <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Django <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">ETL Pipelines <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Machine Learning <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Python <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Apache Spark <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Airflow <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Hadoop HDFS <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">FastAPI <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">PostgreSQL <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">ClickHouse <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Docker <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">PySpark <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Django <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">ETL Pipelines <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Machine Learning <span class="ticker-sep">✦</span></span>
+  </div>
+</div>
+
+<section id="about">
+  <p class="section-label fade-in">About Me</p>
+  <div class="about-grid">
+    <div class="fade-in">
+      <h2 class="section-title">Engineer.<br>Researcher.<br>Builder.</h2>
+      <div class="about-text">
+        <p>I'm <strong>Fadwa Hany Elfayoumy</strong>, a Computer Science student at <strong>Nile University, Cairo</strong> (graduating 2026), specializing in data engineering, backend development, and machine learning.</p>
+        <p>I build end-to-end data systems — from <strong>ETL pipelines with Airflow and Spark</strong> to ML models and production-ready backend APIs. My work spans healthcare AI, recommendation systems, and intelligent LLM applications.</p>
+        <p>Previously a <strong>Teaching Assistant at Nile University</strong>, supporting 30+ students in Python and Computer Architecture.</p>
+      </div>
+      <div style="margin-top: 2rem;">
+        <span class="honor-badge">President's Honor — Fall 2025</span>
+        <span class="honor-badge">Dean's List — Fall 2024</span>
+        <span class="honor-badge">Dean's List — Spring 2025</span>
+      </div>
+    </div>
+    <div class="stats-grid fade-in">
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Projects shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">32M</div>
+        <div class="stat-label">Records processed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0.88</div>
+        <div class="stat-label">BERTScore F1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="max-width:none; padding-left:3rem; padding-right:3rem; padding-top:0;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label fade-in">Work</p>
+    <h2 class="section-title fade-in">Featured Projects</h2>
+    <div class="projects-grid fade-in">
+
+      <a href="https://github.com/Fadwahanyy" target="_blank" class="project-card">
+        <span class="project-tag">AI · LLM · NLP</span>
+        <h3 class="project-name">NeuroBuddy — AI Caregiver Support</h3>
+        <p class="project-desc">Fine-tuned Qwen 3.5 LLM using LoRA on multi-source mental health datasets (PsyQA, 16K+ English samples, 3K+ autism Q&A). Built a RAG pipeline with autism-focused knowledge sources.</p>
+        <div class="project-metrics">
+          <span class="metric">BERTScore F1 <strong>0.88</strong></span>
+          <span class="metric">Perplexity <strong>2.57</strong></span>
+        </div>
+        <p class="project-date">Aug 2025 – Jul 2026</p>
+      </a>
+
+      <a href="https://github.com/Fadwahanyy/Early_Cardiovascular_Disease_Detection" target="_blank" class="project-card">
+        <span class="project-tag">ML · Healthcare</span>
+        <h3 class="project-name">Cardiovascular Disease Detection</h3>
+        <p class="project-desc">End-to-end ML pipeline on 70K+ patient records. Advanced feature engineering (Pulse Pressure, Age–BP interaction) with Gradient Boosting, cross-validation, and hyperparameter tuning.</p>
+        <div class="project-metrics">
+          <span class="metric"><strong>70K+</strong> records</span>
+          <span class="metric">ROC-AUC <strong>0.79</strong></span>
+          <span class="metric">F1 <strong>0.72</strong></span>
+        </div>
+        <p class="project-date">Sep – Dec 2025</p>
+      </a>
+
+      <a href="https://github.com/Fadwahanyy/Movie_Recommendation_System" target="_blank" class="project-card">
+        <span class="project-tag">Big Data · Recommender Systems</span>
+        <h3 class="project-name">Movie Recommendation System</h3>
+        <p class="project-desc">Scalable pipeline using Apache Spark MLlib (ALS) and Hadoop HDFS on MovieLens 32M dataset. Dockerized Hadoop environment with real-time Streamlit serving.</p>
+        <div class="project-metrics">
+          <span class="metric"><strong>32M</strong> records</span>
+          <span class="metric">RMSE <strong>0.81</strong></span>
+          <span class="metric">&lt;<strong>2s</strong> latency</span>
+        </div>
+        <p class="project-date">Mar – Jun 2025</p>
+      </a>
+
+      <a href="https://github.com/Classera-Intern-Tasks/Task-6-Sales-Etl-Airflow" target="_blank" class="project-card">
+        <span class="project-tag">Data Engineering · ETL</span>
+        <h3 class="project-name">Sales ETL Pipeline — Airflow</h3>
+        <p class="project-desc">End-to-end ETL pipeline using Apache Airflow, Python, and PostgreSQL. Automated extraction, transformation, and loading into ClickHouse for analytics. Modular, scalable architecture.</p>
+        <div class="project-metrics">
+          <span class="metric">Airflow + <strong>PostgreSQL</strong></span>
+          <span class="metric"><strong>ClickHouse</strong> analytics</span>
+        </div>
+        <p class="project-date">Jul – Oct 2025</p>
+      </a>
+
+      <a href="https://github.com/Classera-Intern-Tasks/Task-4-ORM_with_FastAPI" target="_blank" class="project-card" style="grid-column: 1 / -1;">
+        <span class="project-tag">Backend · REST API</span>
+        <h3 class="project-name">FastAPI Backend with SQLAlchemy</h3>
+        <p class="project-desc">RESTful backend API using FastAPI and SQLAlchemy ORM. Full CRUD operations, Alembic database migrations, Pydantic schemas, and optimized API performance for efficient data access.</p>
+        <div class="project-metrics">
+          <span class="metric"><strong>FastAPI</strong></span>
+          <span class="metric"><strong>SQLAlchemy</strong> ORM</span>
+          <span class="metric">Alembic <strong>migrations</strong></span>
+          <span class="metric">Pydantic <strong>schemas</strong></span>
+        </div>
+        <span class="project-arrow">View on GitHub →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <p class="section-label fade-in">Skills</p>
+  <h2 class="section-title fade-in">Tech Stack</h2>
+  <div class="stack-groups fade-in">
+    <div class="stack-row">
+      <span class="stack-row-label">Programming</span>
+      <div class="stack-pills">
+        <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">C++</span><span class="pill">C</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-row-label">Data &amp; Big Data</span>
+      <div class="stack-pills">
+        <span class="pill">Apache Spark</span><span class="pill">PySpark</span><span class="pill">Apache Airflow</span><span class="pill">Hadoop HDFS</span><span class="pill">Pandas</span><span class="pill">ETL / ELT</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-row-label">Machine Learning</span>
+      <div class="stack-pills">
+        <span class="pill">Spark MLlib</span><span class="pill">Scikit-learn</span><span class="pill">LLM Fine-tuning</span><span class="pill">RAG</span><span class="pill">LoRA</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-row-label">Databases</span>
+      <div class="stack-pills">
+        <span class="pill">PostgreSQL</span><span class="pill">ClickHouse</span><span class="pill">OLTP / OLAP</span><span class="pill">Data Warehousing</span>
+      </div>
+    </div>
+    <div class="stack-row">
+      <span class="stack-row-label">Backend &amp; Web</span>
+      <div class="stack-pills">
+        <span class="pill">FastAPI</span><span class="pill">Django</span><span class="pill">SQLAlchemy</span><span class="pill">REST APIs</span>
+      </div>
+    </div>
+    <div class="stack-row" style="border-bottom:none;">
+      <span class="stack-row-label">Tools</span>
+      <div class="stack-pills">
+        <span class="pill">Docker</span><span class="pill">Git</span><span class="pill">Linux</span><span class="pill">Streamlit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="padding-top:0;">
+  <p class="section-label fade-in">Experience</p>
+  <h2 class="section-title fade-in">Where I've Worked</h2>
+  <div class="fade-in">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Data Science &amp; AI Intern — Data Engineering</div>
+          <div class="exp-company">Classera</div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-date">Jul – Oct 2025</span>
+          <span class="exp-location">Remote</span>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Built ETL/ELT pipelines using Airflow, PostgreSQL, and Python.</li>
+        <li>Developed data pipelines with Pandas and SQL for transformation and loading.</li>
+        <li>Designed data warehouse schemas — star and snowflake models.</li>
+        <li>Built backend APIs using FastAPI and SQLAlchemy with full CRUD operations.</li>
+        <li>Optimized SQL queries and ensured data quality through validation and preprocessing.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card" style="margin-top:1px;">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Front-End Development Intern</div>
+          <div class="exp-company">Classera</div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-date">Jul – Oct 2024</span>
+          <span class="exp-location">Jeddah, Saudi Arabia</span>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Developed responsive web interfaces using HTML, CSS, and JavaScript.</li>
+        <li>Built interactive UI components and improved user experience across devices.</li>
+        <li>Collaborated with cross-functional teams to deliver scalable front-end features.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card" style="margin-top:1px;">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Junior Teaching Assistant</div>
+          <div class="exp-company">Nile University</div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-date">Oct 2023 – Jan 2024</span>
+          <span class="exp-location">Cairo, Egypt</span>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Assisted 30+ students in Python programming and Computer Architecture through hands-on lab sessions.</li>
+        <li>Reviewed student code and guided debugging of logic and implementation issues.</li>
+        <li>Collaborated with instructors to enhance student engagement and learning outcomes.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner fade-in">
+    <p class="section-label">Contact</p>
+    <h2 class="contact-title">Let's Build<br>Something.</h2>
+    <p class="contact-sub">Open to data engineering roles, ML research, and internship opportunities. Based in 6 October City, Giza — eligible to work in Egypt and Saudi Arabia.</p>
+    <div class="contact-links">
+      <a href="mailto:fadwahany2030@gmail.com" class="contact-link">Email →</a>
+      <a href="https://linkedin.com/in/fadwahany" target="_blank" class="contact-link">LinkedIn →</a>
+      <a href="https://github.com/Fadwahanyy" target="_blank" class="contact-link">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Fadwa Hany Elfayoumy</span>
+  <span>Data Engineer · Cairo, Egypt</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
