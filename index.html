@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fadwa Hany — Data Engineer</title>
+  <meta name="description"
+    content="Fadwa Hany Elfayoumy — Data Engineer. Computer Science graduate (Nile University, Highest Honors) building ETL pipelines, big data systems, and LLM applications.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -94,6 +96,7 @@
       flex-direction: column;
       justify-content: center;
       padding: 8rem 3rem 5rem;
+      max-width: none;
       position: relative;
       overflow: hidden;
     }
@@ -131,6 +134,7 @@
       background: #4ade80;
       box-shadow: 0 0 8px #4ade80;
       animation: pulse 2s infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
@@ -163,7 +167,7 @@
       font-size: 1.05rem;
       line-height: 1.7;
       color: var(--fg2);
-      max-width: 540px;
+      max-width: 560px;
       margin-bottom: 3rem;
     }
 
@@ -222,7 +226,8 @@
 
     .ticker-track {
       display: flex;
-      animation: ticker 28s linear infinite;
+      width: max-content;
+      animation: ticker 32s linear infinite;
       white-space: nowrap;
     }
 
@@ -314,13 +319,20 @@
       font-size: 2.2rem;
       color: var(--accent);
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
 
     .stat-label {
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
+      color: var(--fg);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-desc {
+      font-size: 0.8rem;
+      line-height: 1.5;
       color: var(--fg2);
     }
 
@@ -339,6 +351,23 @@
       margin-top: 8px;
     }
 
+    .honor-badge.top {
+      background: rgba(232, 213, 176, 0.16);
+      border-color: rgba(232, 213, 176, 0.45);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .projects-wrap {
+      max-width: none;
+      padding-top: 0;
+    }
+
+    .projects-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -354,6 +383,10 @@
       text-decoration: none;
       color: inherit;
       display: block;
+    }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
     }
 
     .project-card:hover {
@@ -380,11 +413,19 @@
       line-height: 1.2;
     }
 
+    .project-card.featured .project-name {
+      font-size: 1.5rem;
+    }
+
     .project-desc {
       font-size: 0.88rem;
       line-height: 1.7;
       color: var(--fg2);
       margin-bottom: 1.5rem;
+    }
+
+    .project-card.featured .project-desc {
+      max-width: 820px;
     }
 
     .project-metrics {
@@ -442,6 +483,10 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .stack-row:last-child {
+      border-bottom: none;
+    }
+
     .stack-row-label {
       font-size: 0.72rem;
       text-transform: uppercase;
@@ -495,6 +540,7 @@
 
     .exp-meta {
       text-align: right;
+      flex-shrink: 0;
     }
 
     .exp-date {
@@ -504,6 +550,10 @@
       color: var(--fg2);
       display: block;
       margin-bottom: 3px;
+    }
+
+    .exp-current {
+      color: #4ade80;
     }
 
     .exp-location {
@@ -532,6 +582,16 @@
       position: absolute;
       left: 0;
       color: var(--accent2);
+    }
+
+    .edu-card {
+      border: 1px solid rgba(196, 168, 122, 0.25);
+      background: linear-gradient(135deg, rgba(196, 168, 122, 0.08), transparent 60%);
+      padding: 2.5rem;
+    }
+
+    .edu-card .exp-points {
+      margin-top: 0.4rem;
     }
 
     .contact-inner {
@@ -598,6 +658,20 @@
       transform: none;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .ticker-track,
+      .status-dot {
+        animation: none;
+      }
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 1.2rem 1.5rem;
@@ -615,6 +689,10 @@
         padding: 5rem 1.5rem;
       }
 
+      .projects-wrap {
+        padding-top: 0;
+      }
+
       .about-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -622,6 +700,12 @@
 
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+
+      .project-card,
+      .exp-card,
+      .edu-card {
+        padding: 1.8rem;
       }
 
       .stack-row {
@@ -664,17 +748,18 @@
     </ul>
   </nav>
 
-  <section class="hero" style="max-width:none; padding-left:3rem; padding-right:3rem;">
+  <section class="hero">
     <div class="status-badge">
       <span class="status-dot"></span>
-      CS Student at Nile University · Cairo, Egypt
+      CS Graduate with Highest Honors · Nile University, Class of 2026
     </div>
     <h1 class="hero-title">
       Building<br><span class="line-accent">Scalable</span><br>Data Systems.
     </h1>
     <p class="hero-sub">
-      Aspiring Data Engineer specializing in ETL pipelines, Big Data, and ML systems. Turning raw data into real-world
-      impact with Python, Spark, and Airflow.
+      Data Engineer specializing in ETL pipelines, big data, and ML systems. Turning raw data into real-world
+      impact with Python, Spark, and Airflow — currently a CS Teaching Assistant at Menofia National University
+      and a Women in Tech trainee at CIB.
     </p>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary">View My Work</a>
@@ -682,7 +767,7 @@
     </div>
   </section>
 
-  <div class="ticker">
+  <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span class="ticker-item">Python <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">Apache Spark <span class="ticker-sep">✦</span></span>
@@ -693,9 +778,10 @@
       <span class="ticker-item">ClickHouse <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">Docker <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">PySpark <span class="ticker-sep">✦</span></span>
-      <span class="ticker-item">Django <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">LLM Fine-Tuning <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">RAG <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">ETL Pipelines <span class="ticker-sep">✦</span></span>
-      <span class="ticker-item">Machine Learning <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Data Warehousing <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">Python <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">Apache Spark <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">Airflow <span class="ticker-sep">✦</span></span>
@@ -705,9 +791,10 @@
       <span class="ticker-item">ClickHouse <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">Docker <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">PySpark <span class="ticker-sep">✦</span></span>
-      <span class="ticker-item">Django <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">LLM Fine-Tuning <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">RAG <span class="ticker-sep">✦</span></span>
       <span class="ticker-item">ETL Pipelines <span class="ticker-sep">✦</span></span>
-      <span class="ticker-item">Machine Learning <span class="ticker-sep">✦</span></span>
+      <span class="ticker-item">Data Warehousing <span class="ticker-sep">✦</span></span>
     </div>
   </div>
 
@@ -717,16 +804,22 @@
       <div class="fade-in">
         <h2 class="section-title">Engineer.<br>Researcher.<br>Builder.</h2>
         <div class="about-text">
-          <p>I'm <strong>Fadwa Hany Elfayoumy</strong>, a Computer Science student at <strong>Nile University,
-              Cairo</strong> (graduating 2026), specializing in data engineering, backend development, and machine
+          <p>I'm <strong>Fadwa Hany Elfayoumy</strong>, a Computer Science graduate of <strong>Nile University,
+              Cairo</strong> (Class of 2026), where I graduated with <strong>highest honors</strong> and a
+            <strong>3.82 / 4.00 GPA</strong>. I specialize in data engineering, backend development, and machine
             learning.</p>
           <p>I build end-to-end data systems — from <strong>ETL pipelines with Airflow and Spark</strong> to ML models
-            and production-ready backend APIs. My work spans healthcare AI, recommendation systems, and intelligent LLM
-            applications.</p>
-          <p>Previously a <strong>Junior Teaching Assistant at Nile University</strong>, supporting 30+ students in
-            Python and Computer Architecture.</p>
+            and production-ready backend APIs. My work spans healthcare AI, recommendation systems, and LLM
+            applications with retrieval-augmented generation.</p>
+          <p>I'm a <strong>Computer Science Teaching Assistant at Menofia National University (MNU)</strong>, leading
+            sections in Discrete Mathematics and Introduction to Automata &amp; Complexity Theory. Alongside that, I'm a
+            trainee in the <strong>Women in Tech Program at Commercial International Bank (CIB)</strong>, rotating
+            across security risk management, data governance, data science, and software development. Earlier, as a
+            <strong>Junior Teaching Assistant at Nile University</strong>, I supported 30+ students in Python and
+            Computer Architecture.</p>
         </div>
         <div style="margin-top: 2rem;">
+          <span class="honor-badge top">Graduated with Highest Honors — 2026</span>
           <span class="honor-badge">President's Honor — Fall 2025</span>
           <span class="honor-badge">Dean's List — Fall 2024</span>
           <span class="honor-badge">Dean's List — Spring 2025</span>
@@ -734,51 +827,57 @@
       </div>
       <div class="stats-grid fade-in">
         <div class="stat-card">
-          <div class="stat-num">10+</div>
-          <div class="stat-label">Projects Successfully Delivered</div>
-          <div class="stat-desc">From AI automation to data platforms</div>
+          <div class="stat-num">3.82</div>
+          <div class="stat-label">GPA · Highest Honors</div>
+          <div class="stat-desc">B.Sc. Computer Science, Nile University</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-num">32M+</div>
           <div class="stat-label">Records Processed</div>
-          <div class="stat-desc">Large-scale data pipelines with precision</div>
+          <div class="stat-desc">Distributed pipelines on Spark and HDFS</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-num">0.88</div>
           <div class="stat-label">BERTScore F1</div>
-          <div class="stat-desc">High-quality NLP model performance</div>
+          <div class="stat-desc">Fine-tuned LLM in the NeuroBuddy graduation project</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-num">40%</div>
-          <div class="stat-label">Workflow Efficiency Boost</div>
-          <div class="stat-desc">Optimized business operations through automation</div>
+          <div class="stat-num">3×</div>
+          <div class="stat-label">BLEU Improvement</div>
+          <div class="stat-desc">From 5.24 to 15.58 over the base model</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" style="max-width:none; padding-left:3rem; padding-right:3rem; padding-top:0;">
-    <div style="max-width:1100px; margin:0 auto;">
+  <section id="projects" class="projects-wrap">
+    <div class="projects-inner">
       <p class="section-label fade-in">Work</p>
       <h2 class="section-title fade-in">Featured Projects</h2>
       <div class="projects-grid fade-in">
 
-        <a href="https://github.com/Fadwahanyy" target="_blank" class="project-card">
-          <span class="project-tag">AI · LLM · NLP</span>
-          <h3 class="project-name">NeuroBuddy — AI Caregiver Support</h3>
-          <p class="project-desc">Fine-tuned Qwen 3.5 LLM using LoRA on multi-source mental health datasets (PsyQA, 16K+
-            English samples, 3K+ autism Q&A). Built a RAG pipeline with autism-focused knowledge sources.</p>
+        <a href="https://github.com/Fadwahanyy" target="_blank" rel="noopener" class="project-card featured">
+          <span class="project-tag">Graduation Project · LLM · NLP · RAG</span>
+          <h3 class="project-name">NeuroBuddy — AI-Powered Caregiver Support System</h3>
+          <p class="project-desc">Fine-tuned Qwen2.5-7B-Instruct with LoRA on a 38K-dialogue mental-health corpus using
+            two-stage curriculum training. Built a hybrid RAG pipeline combining FAISS, BM25, and reranking over 6,745
+            knowledge chunks from autism-focused sources, and ran an ablation study comparing the base, fine-tuned, and
+            fine-tuned + RAG models on 103 held-out questions. The end-to-end architecture integrates LLM inference,
+            retrieval, safety filters, APIs, PostgreSQL, and data pipelines.</p>
           <div class="project-metrics">
             <span class="metric">BERTScore F1 <strong>0.88</strong></span>
-            <span class="metric">Perplexity <strong>2.57</strong></span>
+            <span class="metric">BLEU <strong>5.24 → 15.58</strong></span>
+            <span class="metric"><strong>38K</strong> dialogues</span>
+            <span class="metric"><strong>6,745</strong> RAG chunks</span>
+            <span class="metric">Evaluated with <strong>RAGAS</strong></span>
           </div>
           <p class="project-date">Aug 2025 – Jul 2026</p>
         </a>
 
-        <a href="https://github.com/Fadwahanyy/Early_Cardiovascular_Disease_Detection" target="_blank"
+        <a href="https://github.com/Fadwahanyy/Early_Cardiovascular_Disease_Detection" target="_blank" rel="noopener"
           class="project-card">
           <span class="project-tag">ML · Healthcare</span>
           <h3 class="project-name">Cardiovascular Disease Detection</h3>
@@ -792,25 +891,28 @@
           <p class="project-date">Sep – Dec 2025</p>
         </a>
 
-        <a href="https://github.com/Fadwahanyy/Movie_Recommendation_System" target="_blank" class="project-card">
+        <a href="https://github.com/Fadwahanyy/Movie_Recommendation_System" target="_blank" rel="noopener"
+          class="project-card">
           <span class="project-tag">Big Data · Recommender Systems</span>
           <h3 class="project-name">Movie Recommendation System</h3>
-          <p class="project-desc">Scalable pipeline using Apache Spark MLlib (ALS) and Hadoop HDFS on MovieLens 32M
-            dataset. Dockerized Hadoop environment with real-time Streamlit serving.</p>
+          <p class="project-desc">Scalable pipeline using Apache Spark MLlib (ALS) and Hadoop HDFS on the MovieLens 32M
+            dataset. Distributed processing with PySpark in a Dockerized Hadoop environment, served in real time
+            through Streamlit.</p>
           <div class="project-metrics">
             <span class="metric"><strong>32M</strong> records</span>
-            <span class="metric">RMSE <strong>0.81</strong></span>
+            <span class="metric">RMSE <strong>0.81</strong> (baseline 3.68)</span>
             <span class="metric">&lt;<strong>2s</strong> latency</span>
           </div>
           <p class="project-date">Mar – Jun 2025</p>
         </a>
 
-        <a href="https://github.com/Classera-Intern-Tasks/Task-6-Sales-Etl-Airflow" target="_blank"
+        <a href="https://github.com/Classera-Intern-Tasks/Task-6-Sales-Etl-Airflow" target="_blank" rel="noopener"
           class="project-card">
           <span class="project-tag">Data Engineering · ETL</span>
           <h3 class="project-name">Sales ETL Pipeline — Airflow</h3>
-          <p class="project-desc">End-to-end ETL pipeline using Apache Airflow, Python, and PostgreSQL. Automated
-            extraction, transformation, and loading into ClickHouse for analytics. Modular, scalable architecture.</p>
+          <p class="project-desc">End-to-end ETL pipeline using Apache Airflow, Python, and PostgreSQL, automating
+            extraction, transformation, and loading into ClickHouse for analytics and reporting. Modular, scalable
+            architecture with structured data-quality validation.</p>
           <div class="project-metrics">
             <span class="metric">Airflow + <strong>PostgreSQL</strong></span>
             <span class="metric"><strong>ClickHouse</strong> analytics</span>
@@ -818,8 +920,8 @@
           <p class="project-date">Jul – Oct 2025</p>
         </a>
 
-        <a href="https://github.com/Classera-Intern-Tasks/Task-4-ORM_with_FastAPI" target="_blank" class="project-card"
-          style="grid-column: 1 / -1;">
+        <a href="https://github.com/Classera-Intern-Tasks/Task-4-ORM_with_FastAPI" target="_blank" rel="noopener"
+          class="project-card">
           <span class="project-tag">Backend · REST API</span>
           <h3 class="project-name">FastAPI Backend with SQLAlchemy</h3>
           <p class="project-desc">RESTful backend API using FastAPI and SQLAlchemy ORM. Full CRUD operations, Alembic
@@ -828,9 +930,8 @@
             <span class="metric"><strong>FastAPI</strong></span>
             <span class="metric"><strong>SQLAlchemy</strong> ORM</span>
             <span class="metric">Alembic <strong>migrations</strong></span>
-            <span class="metric">Pydantic <strong>schemas</strong></span>
           </div>
-          <span class="project-arrow">View on GitHub →</span>
+          <p class="project-date">Jul – Oct 2025</p>
         </a>
 
       </div>
@@ -853,21 +954,23 @@
         <div class="stack-pills">
           <span class="pill">Apache Spark</span><span class="pill">PySpark</span><span class="pill">Apache
             Airflow</span><span class="pill">Hadoop HDFS</span><span class="pill">Pandas</span><span class="pill">ETL /
-            ELT</span>
+            ELT</span><span class="pill">Data Warehousing</span>
         </div>
       </div>
       <div class="stack-row">
-        <span class="stack-row-label">Machine Learning</span>
+        <span class="stack-row-label">Machine Learning &amp; AI</span>
         <div class="stack-pills">
-          <span class="pill">Spark MLlib</span><span class="pill">Scikit-learn</span><span class="pill">LLM
-            Fine-tuning</span><span class="pill">RAG</span><span class="pill">LoRA</span>
+          <span class="pill">Scikit-learn</span><span class="pill">Spark MLlib</span><span class="pill">Deep
+            Learning</span><span class="pill">NLP</span><span class="pill">LLM Fine-Tuning</span><span
+            class="pill">LoRA</span><span class="pill">RAG</span><span class="pill">FAISS</span><span
+            class="pill">Recommender Systems</span><span class="pill">Model Evaluation</span>
         </div>
       </div>
       <div class="stack-row">
         <span class="stack-row-label">Databases</span>
         <div class="stack-pills">
           <span class="pill">PostgreSQL</span><span class="pill">ClickHouse</span><span class="pill">OLTP /
-            OLAP</span><span class="pill">Data Warehousing</span>
+            OLAP</span><span class="pill">Star &amp; Snowflake Schemas</span>
         </div>
       </div>
       <div class="stack-row">
@@ -877,7 +980,7 @@
             class="pill">REST APIs</span>
         </div>
       </div>
-      <div class="stack-row" style="border-bottom:none;">
+      <div class="stack-row">
         <span class="stack-row-label">Tools</span>
         <div class="stack-pills">
           <span class="pill">Docker</span><span class="pill">Git</span><span class="pill">Linux</span><span
@@ -891,6 +994,44 @@
     <p class="section-label fade-in">Experience</p>
     <h2 class="section-title fade-in">Where I've Worked</h2>
     <div class="fade-in">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Teaching Assistant — Computer Science</div>
+            <div class="exp-company">Menofia National University (MNU)</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date exp-current">Sep 2026 – Present</span>
+            <span class="exp-location">Menofia, Egypt</span>
+          </div>
+        </div>
+        <ul class="exp-points">
+          <li>Lead tutorial sections for Discrete Mathematics and Introduction to Automata &amp; Complexity Theory.</li>
+          <li>Explain core theory — logic, proofs, finite automata, grammars, and computability — through worked
+            problems and guided practice.</li>
+          <li>Support students' learning through problem sets, assessment, and one-on-one guidance.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Women in Tech Program — Trainee</div>
+            <div class="exp-company">Commercial International Bank (CIB)</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date exp-current">Aug 2026 – Present</span>
+            <span class="exp-location">Smart Village, Egypt</span>
+          </div>
+        </div>
+        <ul class="exp-points">
+          <li>Selected for a multi-track rotational program spanning security risk management, data governance, data
+            science, and software development.</li>
+          <li>Developing a tuition fees management system as part of an applied software development initiative within
+            the program.</li>
+        </ul>
+      </div>
 
       <div class="exp-card">
         <div class="exp-header">
@@ -912,7 +1053,7 @@
         </ul>
       </div>
 
-      <div class="exp-card" style="margin-top:1px;">
+      <div class="exp-card">
         <div class="exp-header">
           <div>
             <div class="exp-role">Front-End Development Intern</div>
@@ -927,10 +1068,11 @@
           <li>Developed responsive web interfaces using HTML, CSS, and JavaScript.</li>
           <li>Built interactive UI components and improved user experience across devices.</li>
           <li>Collaborated with cross-functional teams to deliver scalable front-end features.</li>
+          <li>Ensured cross-browser compatibility and responsive design.</li>
         </ul>
       </div>
 
-      <div class="exp-card" style="margin-top:1px;">
+      <div class="exp-card">
         <div class="exp-header">
           <div>
             <div class="exp-role">Junior Teaching Assistant</div>
@@ -949,24 +1091,43 @@
       </div>
 
     </div>
+
+    <p class="section-label fade-in" style="margin-top:5rem;">Education</p>
+    <div class="edu-card fade-in">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">B.Sc. in Computer Science — Highest Honors</div>
+          <div class="exp-company">Nile University · GPA 3.82 / 4.00</div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-date">Sep 2022 – Jun 2026</span>
+          <span class="exp-location">Cairo, Egypt</span>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Relevant coursework: Machine Learning, Database Systems, Operating Systems, Software Engineering, Computer
+          Architecture, Algorithms.</li>
+        <li>President's Honor (Fall 2025); Dean's Honors List (Fall 2024, Spring 2025).</li>
+      </ul>
+    </div>
   </section>
 
   <section id="contact">
     <div class="contact-inner fade-in">
       <p class="section-label">Contact</p>
       <h2 class="contact-title">Let's Build<br>Something.</h2>
-      <p class="contact-sub">Open to data engineering roles, ML research, and internship opportunities. Based in 6
-        October City, Giza — eligible to work in Egypt and Saudi Arabia.</p>
+      <p class="contact-sub">Open to data engineering roles, ML research, and academic collaborations. Based in Cairo, Egypt —
+        eligible to work in Egypt and Saudi Arabia.</p>
       <div class="contact-links">
         <a href="mailto:fadwahany2030@gmail.com" class="contact-link">Email →</a>
-        <a href="https://linkedin.com/in/fadwahany" target="_blank" class="contact-link">LinkedIn →</a>
-        <a href="https://github.com/Fadwahanyy" target="_blank" class="contact-link">GitHub →</a>
+        <a href="https://linkedin.com/in/fadwahany" target="_blank" rel="noopener" class="contact-link">LinkedIn →</a>
+        <a href="https://github.com/Fadwahanyy" target="_blank" rel="noopener" class="contact-link">GitHub →</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2025 Fadwa Hany Elfayoumy</span>
+    <span>© 2026 Fadwa Hany Elfayoumy</span>
     <span>Data Engineer · Cairo, Egypt</span>
   </footer>
 
